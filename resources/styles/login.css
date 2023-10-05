@@ -1,0 +1,107 @@
+.xp-login {
+    width: 300px;
+    height: fit-content;
+    background: #bdbdbd;
+}
+
+.xp-login-container {
+    width: 100%;
+    height: calc(100vh - var(--xp-header-height) - var(--xp-footer-height));
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.xp-login-error {
+    width: 300px;
+    height: fit-content;
+    background: #bdbdbd;
+    text-align: center;
+    margin-top: 5px;
+    opacity: 0;
+}
+
+.xp-login-error.show {
+    opacity: 1;
+}
+
+.xp-login-footer {
+    font-family: 'tstar';
+    text-align: center;
+}
+
+#login-error-text a,
+.xp-login-footer a {
+    color: #212121;
+}
+
+.xp-login-error p {
+    font-family: 'tstar';
+    color: red;
+}
+
+.xp-login h1, .xp-login label {
+    font-family: 'tstar';
+    text-align: center;
+}
+
+.xp-login form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    /* align-content: center; */
+    align-items: center;
+}
+
+.xp-login form p {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 80%;
+    margin-top: 0;
+}
+
+.xp-login form input[type="text"],
+.xp-login form input[type="password"],
+.xp-login form input[type="submit"] {
+    width: 90%;
+    height: 25px;
+    font-family: 'tstar';
+    background: transparent;
+    text-align: center;
+    border: 0;
+    background: #e0e0e0;
+    transition: all 0.25s ease-in;
+}
+
+.xp-login form .login-remember label {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.xp-login form input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+.xp-login form input[type="submit"]:hover {
+    background: #212121;
+    color: #e0e0e0;
+}
+
+.xp-login hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #212121;
+    margin: 1em 0;
+    padding: 0;
+  }

@@ -1,0 +1,32 @@
+.mouse, .mouse-outer {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    pointer-events: none;
+    mix-blend-mode: difference;
+    padding: 0;
+    margin: 0;
+    z-index: 2;
+}
+
+.mouse {
+    width: 4px;
+    height: 4px;
+    background: white;
+}
+
+.mouse-outer {
+    width: 14px;
+    height: 14px;
+    background: transparent;
+    border: 1px solid white;
+}
+
+@media only screen and (max-width: 600px) {
+    .mouse, .mouse-outer {
+        display: none;
+    }
+}

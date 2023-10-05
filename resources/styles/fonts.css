@@ -1,0 +1,19 @@
+@font-face {
+    font-family: comfortoaa;
+    src: url('@fonts/comfortoaa.ttf');
+}
+
+@font-face {
+    font-family: sofiapro;
+    src: url('@fonts/sofiapro.otf');
+}
+
+@font-face {
+    font-family: tstar;
+    src: url('@fonts/tstar.otf');
+}
+
+@font-face {
+    font-family: ptmono;
+    src: url('@fonts/ptmono.ttf');
+}
