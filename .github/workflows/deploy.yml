@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
 
 permissions:
-  contents: read
+  actions: write
 
 jobs:
   trigger-wp-workflow:
