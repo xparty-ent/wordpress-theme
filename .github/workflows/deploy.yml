@@ -1,1 +1,55 @@
+name: Theme Deploy
 
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+permissions:
+  contents: read
+
+jobs:
+  checkout:
+    runs-on: [self-hosted, doctorparts-host]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+            
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
+
+  build:
+    runs-on: [self-hosted, doctorparts-host]
+    needs: checkout
+
+    steps:
+      - uses: actions/setup-node@v3
+      
+      - name: Cache theme Composer packages
+        id: composer-theme-php-cache
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-theme-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-theme-php-
+              
+      - name: Cache theme npm packages
+        id: composer-theme-npm-cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-theme-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-theme-npm-
+
+      - name: Install theme dependencies
+        run: |
+          composer install --prefer-dist --no-progress
+          npm i 
+          
+      - name: Build theme
+        run: npm run build
+              
