@@ -14,7 +14,7 @@ jobs:
     runs-on: [self-hosted, doctorparts-host]
     steps:
       - name: Trigger WP Workflow
-        uses: convictional/trigger-workflow-and-wait
+        uses: convictional/trigger-workflow-and-wait@v1.6.1
         with:
           owner: xparty-ent
           repo: wordpress
