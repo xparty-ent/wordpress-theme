@@ -14,14 +14,12 @@ jobs:
     runs-on: [self-hosted, doctorparts-host]
     steps:
       - name: Trigger WP Workflow
-        uses: convictional/trigger-workflow-and-wait@v1.6.1
+        uses: actions/github-script@v6
         with:
-          owner: xparty-ent
-          repo: wordpress
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          workflow_file_name: deploy.yml
-          ref: master
-          wait_interval: 10
-          propagate_failure: true
-          trigger_workflow: true
-          wait_workflow: true
+          script: |
+            github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: 'wordpress',
+              workflow_id: 'deploy.yml',
+              ref: 'master',
+            })
