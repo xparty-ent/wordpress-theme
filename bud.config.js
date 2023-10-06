@@ -26,7 +26,7 @@ export default async (app) => {
    *
    * @see {@link https://bud.js.org/docs/bud.setPublicPath}
    */
-  app.setPublicPath('/app/themes/x-party-wp-theme/public/');
+  app.setPublicPath('/app/themes/xp-theme/public/');
 
   /**
    * Development server settings
