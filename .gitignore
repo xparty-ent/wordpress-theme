@@ -1,2 +1,6 @@
 *.log
-/public/*
+public/*
+vendor/
+composer.lock
+node_modules/
+package-lock.json
