@@ -67,3 +67,17 @@
 .home-container .down-arrow:hover:before {
     border-color: #212121;
 }
+
+.home-container .main-headline {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 70vw;
+}
+
+.home-container .main-headline .wp-block-heading {
+    margin: 0;
+    color: #212121;
+    font-family: 'tstar';
+}

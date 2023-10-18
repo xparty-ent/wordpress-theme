@@ -3,23 +3,54 @@ name: Theme Deploy
 on:
   push:
     branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
 
 permissions:
-  actions: write
+  contents: write
 
 jobs:
-  trigger-wp-workflow:
+  checkout:
     runs-on: [self-hosted, doctorparts-host]
+
     steps:
-      - name: Trigger WP Workflow
-        uses: actions/github-script@v6
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with: 
+          submodules: true
+          lfs: true
+          ref: 'master'
+
+      - name: Update submodules
+        run: |
+          git pull --recurse-submodules
+          git submodule update --remote --recursive
+
+  build:
+    runs-on: [self-hosted, doctorparts-host]
+    needs: checkout
+    steps:
+      - uses: actions/setup-node@v3
+      
+      - name: Cache npm packages
+        id: npm-wordpress-theme-js-cache
+        uses: actions/cache@v3
         with:
-          script: |
-            github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: 'wordpress',
-              workflow_id: 'deploy.yml',
-              ref: 'master',
-            })
+          path: node_modules
+          key: ${{ runner.os }}-wordpress-theme-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-wordpress-theme-npm-
+            
+      - name: Cache WP Composer packages
+        id: composer-wordpress-theme-php-cache
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-wordpress-theme-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-wordpress-theme-php-
+      
+      - name: Install dependecies
+        run: |
+          npm i
+          composer install
+
+    
