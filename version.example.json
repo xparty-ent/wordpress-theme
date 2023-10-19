@@ -1,0 +1,19 @@
+{
+    "slug": "xp-theme",
+    "name": "#x-party WordPress Theme",
+    "version": "--WP-UPDATE-VERSION--",
+    "new_version": "--WP-UPDATE-NEW-VERSION--",
+    "last_updated": "--WP-LAST-UPDATED--",
+    "download_link": "--WP-DOWNLOAD-LINK--",
+    "tested": "--WP-UPDATE-TESTED--",
+    "author": "<a href=\"https://x-party.it\">#x-party</a>",
+    "author_profile": "https://github.com/xparty-ent",
+    "homepage": "https://x-party.it",
+    "requires": "5.8",
+    "requires_php": "7.0",
+    "description": "The official #x-party WordPress theme", 
+    "short_description": "The official #x-party WordPress theme",
+    "sections": {
+        "description": "The official #x-party WordPress theme"
+    }
+}

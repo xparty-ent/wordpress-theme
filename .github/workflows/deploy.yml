@@ -62,8 +62,17 @@ jobs:
         uses: amitsingh-007/next-release-tag@v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          tag_prefix: 'v'
+          tag_prefix: ''
           tag_template: 'yyyy.mm.dd.i'
+
+      - name: Theme packing
+        run: |
+          cd ..
+          mkdir xp-theme
+          cp -r ./wordpress-theme/* ./xp-theme/
+          zip ./wordpress-theme/xp-theme-${{ steps.generate_release_tag.outputs.next_release_tag }}.zip -r ./xp-theme/
+          rm -rf ./xp-theme
+          cd ./wordpress-theme
 
       - name: Create release
         id: create_release
@@ -72,8 +81,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           commitish: 'master'
-          tag_name: ${{ steps.generate_release_tag.outputs.next_release_tag }}
-          release_name: Release ${{ steps.generate_release_tag.outputs.next_release_tag }}
+          tag_name: v${{ steps.generate_release_tag.outputs.next_release_tag }}
+          release_name: Release v${{ steps.generate_release_tag.outputs.next_release_tag }}
           body: Automatic CI Release by ${{ github.actor }} at ${{ github.ref }} reference
           draft: false
           prerelease: false
