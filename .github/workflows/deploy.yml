@@ -70,17 +70,16 @@ jobs:
           cd ..
           mkdir xp-theme
           cp -r ./wordpress-theme/* ./xp-theme/
-          zip -q ./wordpress-theme/xp-theme-$(echo "${{ steps.generate_release_tag.outputs.next_release_tag }}" | sed 's/v//').zip -r ./xp-theme/
+          zip -q ./wordpress-theme/xp-theme.zip -r ./xp-theme/
           rm -rf ./xp-theme
           cd ./wordpress-theme
 
       - name: Creating version file
         run: |
           cp version.example.json version.json
-          set WP_UPDATE_VERSION=
           sed -i 's/--WP-UPDATE-VERSION--/'$(echo "${{ steps.generate_release_tag.outputs.prev_release_tag }}" | sed "s/v//")'/g' version.json
           sed -i 's/--WP-UPDATE-NEW-VERSION--/'$(echo "${{ steps.generate_release_tag.outputs.next_release_tag }}" | sed "s/v//")'/g' version.json
-          sed -i 's/--WP-LAST-UPDATED--/$(date "+%Y-%m-%d %H:%M:%S")/g' version.json
+          sed -i 's/--WP-LAST-UPDATED--/'$(date "+%Y-%m-%d %H:%M:%S")'/g' version.json
           
       - name: Create release
         id: create_release
@@ -102,8 +101,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: ./xp-theme-$(echo "${{ steps.generate_release_tag.outputs.next_release_tag }}" | sed 's/v//').zip
-          asset_name: xp-theme-$(echo "${{ steps.generate_release_tag.outputs.next_release_tag }}" | sed 's/v//').zip
+          asset_path: ./xp-theme.zip
+          asset_name: xp-theme.zip
           asset_content_type: application/zip
 
       - name: Upload Version Asset
