@@ -77,7 +77,7 @@ jobs:
       - name: Creating version file
         run: |
           cp version.example.json version.json
-          sed -i 's/--WP-UPDATE-VERSION--/$(echo "${{ steps.generate_release_tag.outputs.prev_release_tag }}" | sed 's/v//')/' version.json
+          sed -i 's/--WP-UPDATE-VERSION--/$(echo "${{ steps.generate_release_tag.outputs.prev_release_tag }}" | sed "s/v//")/' version.json
 
       - name: Create release
         id: create_release
