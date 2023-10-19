@@ -5,7 +5,7 @@
     "new_version": "--WP-UPDATE-NEW-VERSION--",
     "last_updated": "--WP-LAST-UPDATED--",
     "download_link": "--WP-DOWNLOAD-LINK--",
-    "tested": "--WP-UPDATE-TESTED--",
+    "tested": "5.8",
     "author": "<a href=\"https://x-party.it\">#x-party</a>",
     "author_profile": "https://github.com/xparty-ent",
     "homepage": "https://x-party.it",
