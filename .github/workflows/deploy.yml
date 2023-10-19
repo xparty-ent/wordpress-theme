@@ -79,7 +79,7 @@ jobs:
           cp version.example.json version.json
           sed -i 's/--WP-UPDATE-VERSION--/'$(echo "${{ steps.generate_release_tag.outputs.prev_release_tag }}" | sed "s/v//")'/g' version.json
           sed -i 's/--WP-UPDATE-NEW-VERSION--/'$(echo "${{ steps.generate_release_tag.outputs.next_release_tag }}" | sed "s/v//")'/g' version.json
-          sed -i 's/--WP-LAST-UPDATED--/'$(date "+%Y-%m-%d %H:%M:%S")'/g' version.json
+          sed -i 's/--WP-LAST-UPDATED--/'$(echo $(date "+%Y-%m-%d %H:%M:%S"))'/g' version.json
           
       - name: Create release
         id: create_release
