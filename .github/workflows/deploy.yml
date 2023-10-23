@@ -80,7 +80,7 @@ jobs:
           sed -i 's/--WP-UPDATE-VERSION--/'$(echo "${{ steps.generate_release_tag.outputs.prev_release_tag }}" | sed "s/v//")'/g' version.json
           sed -i 's/--WP-UPDATE-NEW-VERSION--/'$(echo "${{ steps.generate_release_tag.outputs.next_release_tag }}" | sed "s/v//")'/g' version.json
           sed -i "s/--WP-LAST-UPDATED--/`date '+%Y-%m-%d %H:%M:%S'`/g" version.json
-          sed -i "s/--WP-DOWNLOAD-LINK--/https:\/\/github.com\/${{ github.event.repository.name }}\/${{ github.event.repository.owner }}\/releases\/download\/${{ steps.generate_release_tag.outputs.next_release_tag }}\/xp-theme.zip/g" version.json
+          sed -i "s/--WP-DOWNLOAD-LINK--/https:\/\/github.com\/${{ github.event.repository.owner.name }}\/${{ github.event.repository.name }}\/releases\/download\/${{ steps.generate_release_tag.outputs.next_release_tag }}\/xp-theme.zip/g" version.json
           
       - name: Create release
         id: create_release
