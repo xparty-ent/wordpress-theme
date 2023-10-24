@@ -3,6 +3,7 @@
 namespace App\View\Composers;
 
 use Roots\Acorn\View\Composer;
+use Illuminate\Support\Facades\Request;
 
 class Login extends Composer
 {
@@ -22,6 +23,8 @@ class Login extends Composer
      */
     public function with()
     {
-        return [];
+        return [
+            'interim_login' => Request::get('interim-login')
+        ];
     }
 }

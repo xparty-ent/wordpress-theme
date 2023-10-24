@@ -7,7 +7,7 @@ class AuthController extends Controller
 {
     public function login() {
         if(is_user_logged_in()) {
-            return response([
+            return response()->json([
                 "success" => false,
                 "error_code" => "already_logged_in",
                 "error_message" => ""
@@ -25,14 +25,14 @@ class AuthController extends Controller
         ]);
 
         if(is_wp_error($result)) {
-            return response([
+            return response()->json([
                 "success" => false,
                 "error_code" => $result->get_error_code(),
                 "error_message" => $result->get_error_message()
             ]);
         }
 
-        return response([
+        return response()->json([
             "success" => true
         ]);
     }

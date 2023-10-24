@@ -15,6 +15,11 @@
     flex-direction: column;
 }
 
+.xp-login-container.interim-login {
+    width: 100vw;
+    height: 100vh !important;
+}
+
 
 .xp-login-error {
     width: 300px;

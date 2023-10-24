@@ -37,3 +37,7 @@ a, input, p, label {
     height: calc(100% - var(--xp-header-height) - 65px);
     margin-top: var(--xp-header-height);
 }
+
+#main.hide-header {
+    margin-top: 0 !important;
+}

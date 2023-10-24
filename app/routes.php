@@ -29,6 +29,15 @@ function xp_disable_wp_login() {
     }
 }
 
+function xp_enable_router($do_parse) {
+    global $wp_query;
+    $wp_query->is_acorn_router = true;
+
+    return $do_parse;
+}
+
+add_filter('acorn/router/do_parse_request', 'xp_enable_router');
+
 add_action('login_url', 'xp_login_url');
 add_action('lostpassword_url', 'xp_lostpassword_url');
 add_action('register_url', 'xp_register_url');
