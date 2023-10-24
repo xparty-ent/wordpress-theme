@@ -4,6 +4,9 @@ function xp_themes_update($res, $action) {
     // make sure we're triggering the filter on theme updates only
     if($action !== 'update_themes')
         return $res;
+
+    if($res === false)
+        return $res;
     
     // make sure we're checking for our theme
     if(!array_key_exists('xp-theme', $res->checked))
